@@ -37,3 +37,7 @@ next-env.d.ts
 /.wrangler/
 /outputs/
 /work/
+/matikaren-source-*.zip
+/matikaren-github-pages-*.zip
+/.github-pages-test/
+/.github-pages-test-base.zip
