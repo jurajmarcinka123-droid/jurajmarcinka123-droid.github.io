@@ -45,7 +45,7 @@ const reviews = [
     text: 'Veľmi spoľahlivý, zodpovedný, vysvetľuje zrozumiteľne, odporúčam. Nám veľmi pomohol.',
   },
   {
-    author: 'Andreja',
+    author: 'Andrea',
     text: 'Pán Marcinka, máte neskutočne dobrý vplyv na nášho Jakuba. Normálne si píše poznámky z matematiky kvôli vám :) a po prvom doučku vypočítal všetky príklady bez chyby – sám sa pochválil. On maká na sebe, lebo ste mu pomohli svojím prístupom pochopiť, že sa to dá :) Tešíme sa na nedeľné stretnutie a prajem pekný víkend.',
   },
   {
