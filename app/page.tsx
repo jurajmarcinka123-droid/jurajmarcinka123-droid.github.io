@@ -137,7 +137,7 @@ function SchoolBackdrop() {
 }
 
 const lessonPackages = [
-  { lessons: 10, total: 140, perLesson: 14 },
+  { lessons: 10, total: 130, perLesson: 13 },
   { lessons: 20, total: 240, perLesson: 12 },
   { lessons: 40, total: 400, perLesson: 10 },
 ];
@@ -337,9 +337,9 @@ export default function Home() {
 
       <section id="cennik" className="relative overflow-hidden bg-[linear-gradient(180deg,#edf5ff,#f7faff)] pb-4 pt-2">
         <SchoolBackdrop />
-        <div className="site-shell relative z-10"><SectionTitle>Cenník</SectionTitle><div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <article className="price-card"><GraduationCap aria-hidden="true" className="price-card-symbol" /><h3 className="price-head">Kurz prípravy na T9 /<br />prijímačky na SŠ</h3><div className="price-body"><p className="price-label">Skúšobná hodina</p><p className="price-main">15 €</p><div className="price-rule" /><p className="price-label">Balíčky</p><LessonPackageList /></div></article>
-          <article className="price-card"><GraduationCap aria-hidden="true" className="price-card-symbol" /><h3 className="price-head">Kurz prípravy na<br />8-ročné gymnáziá</h3><div className="price-body"><p className="price-label">Skúšobná hodina</p><p className="price-main">15 €</p><div className="price-rule" /><p className="price-label">Balíčky</p><LessonPackageList /></div></article>
+        <div className="site-shell relative z-10"><SectionTitle>Cenník</SectionTitle><div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <article className="price-card"><GraduationCap aria-hidden="true" className="price-card-symbol" /><h3 className="price-head">Kurzy</h3><div className="price-body"><p className="price-label">Skúšobná hodina</p><p className="price-main">14 €</p><div className="price-rule" /><p className="price-label">Balíčky</p><LessonPackageList /></div></article>
+          
           <article className="price-card"><UserRound aria-hidden="true" className="price-card-symbol" /><h3 className="price-head">Individuálne doučovanie<br /><small>(55 minút)</small></h3><div className="price-body"><p className="price-main !mt-0">24 €</p><div className="price-rule" /><p className="price-label">Zober aj parťáka a dostaneš</p><p className="text-[58.5px] font-extrabold leading-none text-[#09266f]">30 %</p><p className="mt-1 text-[20px] font-extrabold leading-[1.2] text-[#075cff]">zľavu</p><p className="mt-3 text-[16.5px] font-normal leading-[1.35]">Učenie bude zábavnejšie<br />a cena výhodnejšia!</p></div></article>
           <article className="price-card"><MonitorPlay aria-hidden="true" className="price-card-symbol" /><h3 className="price-head">Balík samouk</h3><div className="price-body"><p className="price-main !mt-0">20 €</p><div className="price-rule" /><div><div className="mb-3 flex items-center justify-center gap-4 text-[#075cff]"><MonitorPlay className="size-9" /><span className="text-[45px] leading-none">＋</span><UserRound className="size-9" /></div><p className="text-[18px] font-semibold leading-[1.35]">2× výučbové video<br />na konkrétnu tému<br /><span className="text-[36px] leading-none text-[#075cff]">＋</span><br />30-minútové doučovanie<br />na objasnenie nejasností<br />a upevnenie vedomostí</p></div></div></article>
         </div></div>
