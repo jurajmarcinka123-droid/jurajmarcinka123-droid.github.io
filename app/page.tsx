@@ -220,8 +220,8 @@ export default function Home() {
 
         <div className="site-shell relative z-10 flex min-h-[430px] items-center pb-8 pt-6">
           <div className="hero-main-copy relative isolate w-full pt-1">
-            <h1 className="relative z-10 max-w-[660px] text-[52px] font-extrabold leading-[1.04] tracking-[-.035em] sm:text-[62px]">Matematika, <span className="block text-[#65a0ff]">ktorej rozumieš.</span></h1>
-            <p className="mt-5 text-[20px] font-semibold leading-[1.5] text-white">Doučovanie matematiky pre ZŠ, SŠ a VŠ.<br />Príprava na T9, prijímačky a maturitu.</p>
+            <h1 className="relative z-10 max-w-[660px] text-[clamp(2.125rem,8.5vw,3.25rem)] font-extrabold leading-[1.08] tracking-[-.035em] text-balance sm:text-[62px]">Dostaneme ťa na <span className="block text-[#65a0ff]">tvoju vysnívanú strednú školu</span></h1>
+            <p className="mt-5 max-w-[600px] text-[20px] font-semibold leading-[1.5] text-white">Špecializovaná príprava z matematiky na prijímačky na strednú školu a T9.</p>
             <div className="mt-4 flex max-w-[690px] items-start gap-3 rounded-xl border border-[#7eb0ff]/70 bg-[#061947]/55 px-4 py-3 text-[14px] font-bold leading-[1.45] text-white shadow-[0_10px_24px_rgba(0,15,58,.2)] backdrop-blur-sm sm:max-w-[460px]">
               <ShieldCheck className="mt-0.5 size-5 shrink-0 text-[#7eb0ff]" aria-hidden="true" />
               <p><strong className="font-extrabold">Prvá hodina úplne bez rizika.</strong> Ak nebudete spokojní, vrátime vám peniaze.</p>
