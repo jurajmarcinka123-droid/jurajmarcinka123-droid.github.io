@@ -107,7 +107,7 @@ export function VideoReview() {
               className="h-full w-full object-cover"
             />
             <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-[#071a45]/85 via-transparent to-transparent" />
-            <span aria-hidden="true" className="absolute inset-x-0 top-[66%] flex -translate-y-1/2 justify-center">
+            <span aria-hidden="true" className="absolute inset-0 grid place-items-center">
               <span className="grid size-[72px] place-items-center rounded-full bg-[#075cff]/95 text-white shadow-[0_8px_30px_rgba(0,0,0,.3)] transition group-hover:scale-105 group-hover:bg-[#064dcc]">
                 <CirclePlay className="size-12" strokeWidth={1.8} />
               </span>
