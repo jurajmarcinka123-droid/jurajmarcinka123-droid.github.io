@@ -220,10 +220,10 @@ export default function Home() {
               <ShieldCheck className="mt-0.5 size-5 shrink-0 text-[#7eb0ff]" aria-hidden="true" />
               <p><strong className="font-extrabold">Prvá hodina úplne bez rizika.</strong> Ak nebudete spokojní, vrátime vám peniaze.</p>
             </div>
-            <div className="mt-6 grid grid-cols-[minmax(0,1fr)_auto] gap-3 sm:flex sm:flex-wrap sm:items-center sm:justify-start">
-              <CallLink className="button-font inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-white bg-white/10 px-3 py-3 text-[14px] font-extrabold text-white transition hover:bg-white/20 sm:order-2 sm:px-6 sm:text-[15px]" aria-label="Zavolať na číslo +421 944 275 203"><Phone className="size-4 shrink-0" fill="currentColor" />+421 944 275 203</CallLink>
+            <div className="mt-6 grid grid-cols-[auto_minmax(0,1fr)] gap-3 sm:flex sm:flex-wrap sm:items-center sm:justify-start">
               <a href="#cennik" className="button-font inline-flex items-center justify-center whitespace-nowrap rounded-xl border border-white bg-white/5 px-3 py-3 text-[14px] font-extrabold transition hover:bg-white/10 sm:order-3 sm:px-6 sm:text-[15px]">Pozrieť cenník</a>
-              <div className="col-span-2 flex justify-center sm:order-1"><ConsultationDialog /></div>
+              <CallLink className="button-font inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-white bg-white/10 px-3 py-3 text-[14px] font-extrabold text-white transition hover:bg-white/20 sm:order-2 sm:px-6 sm:text-[15px]" aria-label="Zavolať na číslo +421 944 275 203"><Phone className="size-4 shrink-0" fill="currentColor" />+421 944 275 203</CallLink>
+              <div className="col-span-2 flex justify-center sm:order-1"><ConsultationDialog triggerClassName="px-7 py-3.5 text-[16px] sm:px-6 sm:py-3 sm:text-[15px]" /></div>
             </div>
             <div className="mt-7 grid max-w-[1080px] grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-3 lg:grid-cols-6 lg:gap-x-5">
               {advantages.map(({ icon: Icon, title }) => (
