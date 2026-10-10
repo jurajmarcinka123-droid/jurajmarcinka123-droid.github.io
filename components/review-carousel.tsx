@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { MessageSquarePlus, Send, Star } from 'lucide-react';
+import { MessageSquarePlus, Send, Star, X } from 'lucide-react';
 
 import {
   type CarouselApi,
@@ -172,6 +172,9 @@ function AddReviewDialog() {
         Pridať recenziu
       </DialogTrigger>
       <DialogContent showCloseButton={false} className="max-h-[90vh] max-w-lg overflow-y-auto rounded-2xl border border-[#c7d8f5] bg-white p-6 text-[#153373] shadow-2xl sm:p-8">
+        <DialogClose aria-label="Zavrieť pridanie recenzie" className="absolute right-3 top-3 z-10 grid size-9 place-items-center rounded-full text-[#526891] transition hover:bg-[#eaf2ff] hover:text-[#075cff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075cff]">
+          <X className="size-[18px]" />
+        </DialogClose>
         {status === 'success' ? (
           <>
             <DialogHeader className="items-center text-center">
@@ -191,7 +194,7 @@ function AddReviewDialog() {
           </>
         ) : (
           <>
-            <DialogHeader>
+            <DialogHeader className="pr-8">
               <DialogTitle className="text-[24px] font-extrabold text-[#09266f]">Pridať recenziu</DialogTitle>
               <DialogDescription className="text-[14px] leading-relaxed text-[#526891]">
                 Napíšte nám svoju skúsenosť.

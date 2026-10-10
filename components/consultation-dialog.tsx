@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { CalendarCheck2, Send } from 'lucide-react';
+import { CalendarCheck2, Send, X } from 'lucide-react';
 
 import {
   Dialog,
@@ -98,6 +98,9 @@ export function ConsultationDialog({ compact = false, triggerClassName }: { comp
       </DialogTrigger>
 
       <DialogContent showCloseButton={false} className="max-h-[92vh] max-w-4xl overflow-y-auto rounded-2xl border border-[#c7d8f5] bg-white p-6 text-[#153373] shadow-2xl sm:p-8">
+        <DialogClose aria-label="Zavrieť konzultáciu" className="absolute right-3 top-3 z-10 grid size-9 place-items-center rounded-full text-[#526891] transition hover:bg-[#eaf2ff] hover:text-[#075cff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075cff]">
+          <X className="size-[18px]" />
+        </DialogClose>
         {status === 'success' ? (
           <>
             <DialogHeader className="items-center text-center">
@@ -117,7 +120,7 @@ export function ConsultationDialog({ compact = false, triggerClassName }: { comp
           </>
         ) : (
           <>
-            <DialogHeader>
+            <DialogHeader className="pr-8">
               <DialogTitle className="text-[27px] font-extrabold text-[#09266f]">Objednať bezplatnú konzultáciu</DialogTitle>
               <DialogDescription className="text-[14px] leading-relaxed text-[#526891]">
                 Napíšte nám svoje kontaktné údaje a stručne opíšte, s čím potrebujete pomôcť.

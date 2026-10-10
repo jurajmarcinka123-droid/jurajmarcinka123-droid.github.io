@@ -9,6 +9,7 @@ const posterSrc = '/videos/matikaren-video-recenzia-poster-sedi.jpg';
 export function VideoReview() {
   const [started, setStarted] = React.useState(false);
   const [failed, setFailed] = React.useState(false);
+  const [playing, setPlaying] = React.useState(false);
   const [controlsVisible, setControlsVisible] = React.useState(true);
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const controlsTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -56,41 +57,63 @@ export function VideoReview() {
       </figcaption>
       <div className="relative aspect-[9/16] overflow-hidden rounded-[24px] border border-[#cad9f4] bg-[#071a45] shadow-[0_16px_40px_rgba(24,72,158,.18)]">
         {started ? (
-          <video
-            ref={videoRef}
-            src={videoSrc}
-            poster={posterSrc}
-            width={720}
-            height={1280}
-            controls={controlsVisible}
-            playsInline
-            autoPlay
-            preload="auto"
-            tabIndex={0}
-            aria-label="Video recenzia Matikárne"
-            onPlaying={() => hideControlsSoon(800)}
-            onPointerDown={revealControls}
-            onPointerUp={() => hideControlsSoon()}
-            onPointerCancel={() => hideControlsSoon()}
-            onKeyDown={(event) => {
-              revealControls();
-              if (event.key === ' ' && !event.currentTarget.controls) {
-                event.preventDefault();
-                if (event.currentTarget.paused) {
-                  void event.currentTarget.play().catch(() => setFailed(true));
-                } else {
-                  event.currentTarget.pause();
+          <>
+            <video
+              ref={videoRef}
+              src={videoSrc}
+              poster={posterSrc}
+              width={720}
+              height={1280}
+              controls={controlsVisible}
+              playsInline
+              autoPlay
+              preload="auto"
+              tabIndex={0}
+              aria-label="Video recenzia Matikárne"
+              onPlaying={() => {
+                setPlaying(true);
+                hideControlsSoon(800);
+              }}
+              onPointerDown={revealControls}
+              onPointerUp={() => hideControlsSoon()}
+              onPointerCancel={() => hideControlsSoon()}
+              onKeyDown={(event) => {
+                revealControls();
+                if (event.key === ' ' && !event.currentTarget.controls) {
+                  event.preventDefault();
+                  if (event.currentTarget.paused) {
+                    void event.currentTarget.play().catch(() => setFailed(true));
+                  } else {
+                    event.currentTarget.pause();
+                  }
                 }
-              }
-            }}
-            onPause={revealControls}
-            onEnded={revealControls}
-            onWaiting={revealControls}
-            onError={() => setFailed(true)}
-            className="block h-full w-full scale-[1.045] object-cover [&:fullscreen]:scale-100 [&:fullscreen]:object-contain"
-          >
-            Váš prehliadač nepodporuje prehrávanie videa.
-          </video>
+              }}
+              onPause={() => {
+                setPlaying(false);
+                revealControls();
+              }}
+              onEnded={() => {
+                setPlaying(false);
+                revealControls();
+              }}
+              onWaiting={revealControls}
+              onError={() => setFailed(true)}
+              className="block h-full w-full scale-[1.045] object-cover [&:fullscreen]:scale-100 [&:fullscreen]:object-contain"
+            >
+              Váš prehliadač nepodporuje prehrávanie videa.
+            </video>
+            {playing && !controlsVisible && (
+              <button
+                type="button"
+                aria-label="Pozastaviť video recenziu"
+                onClick={() => {
+                  videoRef.current?.pause();
+                  revealControls();
+                }}
+                className="absolute inset-0 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-[#75acff]"
+              />
+            )}
+          </>
         ) : (
           <button
             type="button"
