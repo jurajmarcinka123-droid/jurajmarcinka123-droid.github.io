@@ -2,12 +2,12 @@ import Image from 'next/image';
 import { CallLink } from '@/components/call-link';
 import { ConsultationDialog } from '@/components/consultation-dialog';
 import { ReviewCarousel } from '@/components/review-carousel';
+import { VideoReview } from '@/components/video-review';
 import {
   BarChart3,
   BookOpenCheck,
-  Building2,
   Calculator,
-  CirclePlay,
+  ClipboardCheck,
   ClipboardList,
   Clock3,
   GraduationCap,
@@ -39,39 +39,29 @@ const navigation = [
 ];
 
 const advantages = [
-  { icon: Users, title: 'Skúsení lektori', text: 'Každý lektor u nás má prax a je odborníkom v matematike.' },
-  { icon: Target, title: 'Individuálny prístup', text: 'Prispôsobujeme sa každému žiakovi, jeho tempu a potrebám.' },
-  { icon: BarChart3, title: 'Zrozumiteľné vysvetlenia', text: 'Učíme žiakov chápať matematiku tak, aby im dávala zmysel.' },
-  { icon: Clock3, title: 'Flexibilne online aj osobne', text: 'Doučovanie podľa vašich potrieb.' },
-  { icon: GraduationCap, title: 'Stovky spokojných študentov', text: 'Výsledky, ktoré potvrdzujú aj ich recenzie.' },
-  { icon: BookOpenCheck, title: '10000+ odučených hodín', text: 'Skúsenosti s rôznym učivom aj úrovňami.' },
+  { icon: Users, title: 'Skúsení lektori' },
+  { icon: Target, title: 'Individuálny prístup' },
+  { icon: BarChart3, title: 'Zrozumiteľné vysvetlenia' },
+  { icon: Clock3, title: 'Flexibilne online aj osobne' },
+  { icon: GraduationCap, title: 'Stovky spokojných študentov' },
+  { icon: BookOpenCheck, title: '10000+ odučených hodín' },
 ];
 
 const promises = [
   { icon: GraduationCap, title: 'Skúsení lektori' },
   { icon: Users, title: 'Individuálny prístup' },
-  { icon: ShieldCheck, title: 'Podpora a motivácia' },
-  { icon: Star, title: 'Overené metódy' },
+  { icon: ClipboardList, title: 'Presná osnova prípravy' },
+  { icon: ClipboardCheck, title: 'Priebežné testovanie vedomostí' },
+  { icon: MessageCircle, title: 'Pravidelný report rodičom' },
+  { icon: ShieldCheck, title: 'Garancia 100 % pripravenosti' },
 ];
 
 const courses = [
   {
     icon: ClipboardList,
-    title: 'Kurz prípravy na T9 / prijímacie skúšky na SŠ',
+    title: 'Kurz prípravy na prijímacie skúšky na SŠ a T9',
     text: '60-minútová lekcia so systematickou prípravou v malej skupine 2 – 6 žiakov na Testovanie 9 alebo prijímacie skúšky na SŠ.',
     includes: ['Výučbové materiály po každej téme', 'Pravidelné domáce úlohy', 'Pravidelné kontrolné testy', '90-minútové testy podľa špecifikácií T9', 'Prijímačkové testy z minulých rokov'],
-  },
-  {
-    icon: Building2,
-    title: 'Kurz prípravy na prijímačky na 8-ročné gymnázium',
-    text: '60-minútová lekcia so systematickou prípravou v malej skupine 2 – 6 žiakov na prijímacie skúšky na 8-ročné gymnázium.',
-    includes: ['Výučbové materiály', 'Pravidelné domáce úlohy', 'Kontrolné testy', 'Prijímačkové testy z minulých rokov'],
-  },
-  {
-    icon: GraduationCap,
-    title: 'Kurz prípravy na maturitu / prijímačky na VŠ',
-    text: '60-minútová lekcia so systematickou prípravou v malej skupine 2 – 6 žiakov na maturitu alebo prijímacie skúšky na VŠ.',
-    includes: ['Výučbové materiály', 'Pravidelné domáce úlohy', 'Kontrolné testy', 'Testy podľa špecifikácií maturitnej skúšky', 'Prijímačkové testy z minulých rokov'],
   },
   {
     icon: UserRound,
@@ -89,15 +79,16 @@ const courses = [
 
 function LogoMark({ size = 'md', decorative = false }: { size?: 'sm' | 'md' | 'hero'; decorative?: boolean }) {
   const sizeClass = size === 'hero' ? 'size-full' : size === 'sm' ? 'size-9' : 'size-11';
+  const isHero = size === 'hero';
   return (
     <span className={`${sizeClass} relative block shrink-0 overflow-hidden rounded-full bg-[#1743a4]`}>
       <Image
-        src="/matikaren-logo.png"
+        src={isHero ? '/matikaren-logo.png' : '/matikaren-logo-header.png'}
         alt={decorative ? '' : 'Logo Matikáreň'}
-        width={1024}
-        height={1536}
-        sizes={size === 'hero' ? '350px' : '76px'}
-        className="brand-logo-source"
+        width={isHero ? 1024 : 1280}
+        height={isHero ? 1536 : 1280}
+        sizes={isHero ? '350px' : '76px'}
+        className={isHero ? 'brand-logo-source' : 'brand-logo-header-source'}
         priority={size !== 'sm'}
       />
     </span>
@@ -220,7 +211,10 @@ export default function Home() {
 
         <div className="site-shell relative z-10 flex min-h-[430px] items-center pb-8 pt-6">
           <div className="hero-main-copy relative isolate w-full pt-1">
-            <h1 className="relative z-10 max-w-[660px] text-[clamp(2.125rem,8.5vw,3.25rem)] font-extrabold leading-[1.08] tracking-[-.035em] text-balance sm:text-[62px]">Dostaneme ťa na <span className="block text-[#65a0ff]">tvoju vysnívanú strednú školu</span></h1>
+            <h1 className="relative z-10 max-w-[720px] text-[clamp(2.65rem,11vw,3.5rem)] font-extrabold leading-[1.04] tracking-[-.035em] text-balance sm:text-[62px]">
+              <span className="hero-word-pulse inline-block">Dostaneme</span> ťa na
+              <span className="block text-white">tvoju <span className="hero-word-pulse hero-word-pulse-delay inline-block text-[#65a0ff]">vysnívanú</span> <span className="text-[#65a0ff]">strednú školu</span></span>
+            </h1>
             <p className="mt-5 max-w-[600px] text-[20px] font-semibold leading-[1.5] text-white">Špecializovaná príprava z matematiky na prijímačky na strednú školu a T9.</p>
             <div className="mt-4 flex max-w-[690px] items-start gap-3 rounded-xl border border-[#7eb0ff]/70 bg-[#061947]/55 px-4 py-3 text-[14px] font-bold leading-[1.45] text-white shadow-[0_10px_24px_rgba(0,15,58,.2)] backdrop-blur-sm sm:max-w-[460px]">
               <ShieldCheck className="mt-0.5 size-5 shrink-0 text-[#7eb0ff]" aria-hidden="true" />
@@ -231,9 +225,9 @@ export default function Home() {
               <CallLink className="button-font inline-flex items-center gap-2 rounded-xl border border-white bg-white/10 px-6 py-3 text-[15px] font-extrabold text-white transition hover:bg-white/20" aria-label="Zavolať na číslo +421 944 275 203"><Phone className="size-4" fill="currentColor" />+421 944 275 203</CallLink>
               <a href="#cennik" className="button-font rounded-xl border border-white bg-white/5 px-6 py-3 text-[15px] font-extrabold transition hover:bg-white/10">Pozrieť cenník</a>
             </div>
-            <div className="mt-8 grid grid-cols-1 gap-x-5 gap-y-5 sm:grid-cols-2 sm:gap-y-7 lg:grid-cols-6">
-              {advantages.map(({ icon: Icon, title, text }) => (
-                <div key={title} className="flex items-start gap-3 sm:block"><Icon className="mt-0.5 size-8 shrink-0 text-[#6fa7ff] drop-shadow-[0_1px_2px_rgba(2,15,53,.9)] sm:mb-3 sm:mt-0 sm:size-9" strokeWidth={2} /><div><h2 className="text-[21px] font-extrabold leading-[1.2] sm:text-[19px]">{title}</h2><p className="mt-1.5 max-w-[280px] text-[15.5px] font-bold leading-[1.45] text-white">{text}</p></div></div>
+            <div className="mt-7 grid max-w-[1080px] grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-3 lg:grid-cols-6 lg:gap-x-5">
+              {advantages.map(({ icon: Icon, title }) => (
+                <div key={title} className="flex min-w-0 items-center gap-2.5"><Icon className="size-7 shrink-0 text-[#6fa7ff] drop-shadow-[0_1px_2px_rgba(2,15,53,.9)] sm:size-8" strokeWidth={2} /><h2 className="text-[16px] font-extrabold leading-[1.15] sm:text-[17px]">{title}</h2></div>
               ))}
             </div>
           </div>
@@ -253,23 +247,35 @@ export default function Home() {
 
       <section id="o-nas" className="relative overflow-hidden bg-[#f8fbff] pb-4 pt-7">
         <SchoolBackdrop />
-        <div className="site-shell relative z-10 grid items-center gap-8 lg:grid-cols-[.9fr_1.5fr]">
-          <div className="flex h-[228px] items-center justify-center rounded-xl border border-dashed border-[#76a6ff] bg-white text-center">
-            <a href="#kontakt" className="group flex flex-col items-center px-6 text-[13px] font-medium leading-relaxed text-[#153373]"><span className="grid size-11 place-items-center rounded-full bg-[#0b5cff] text-white shadow-[0_8px_20px_rgba(11,92,255,.25)] transition group-hover:scale-105"><CirclePlay className="size-6" /></span><span className="mt-4">Tu bude úvodné video<br />o nás a našom prístupe</span></a>
-          </div>
+        <div className="site-shell relative z-10 grid items-start gap-8 lg:grid-cols-[.9fr_1.5fr]">
+          <VideoReview />
           <div>
             <p className="text-[15px] font-extrabold uppercase text-[#09266f]">O nás</p>
             <h2 className="mt-2 text-[29px] font-extrabold leading-[1.17] tracking-[-.02em] text-[#09266f]">Sme tím lektorov, <span className="text-[#075cff]">ktorí rozumejú matematike aj žiakom.</span></h2>
-            <p className="mt-4 text-[18px] font-normal leading-[1.65] text-[#334d82]">Veríme, že matematika sa dá ľahko zvládnuť, ak zvolíme správny prístup.</p>
-            <p className="mt-3 text-[18px] font-normal leading-[1.65] text-[#334d82]">Snažíme sa učiť tak, aby to dávalo zmysel – nie len naučiť postupy naspamäť, ale vysvetliť, prečo to funguje. Vieme, že každému vyhovuje iný spôsob výučby, a preto sa snažíme prispôsobiť tomu, čo konkrétny žiak potrebuje. Aj zložitejšie učivo vysvetľujeme jednoducho a krok po kroku, aby ste ho vedeli použiť aj v praxi. :)</p>
+            <div className="mt-4 space-y-4 text-[17px] font-normal leading-[1.7] text-[#334d82] sm:text-[18px]">
+              <p>Testovanie 9 a prijímačky na strednú školu nemusia byť obdobím plným stresu. Ak sa zvolí správny systém, príprava sa dá zvládnuť v pokoji a s istotou.</p>
+              <p>Vypracovali sme presnú osnovu, vďaka ktorej so žiakmi krok po kroku zopakujeme celé učivo druhého stupňa. Presne vieme, aké typy úloh sa na skúškach reálne objavujú, a náš spoločný čas venujeme presne tomu, čo je dôležité.</p>
+              <p>Matematiku učíme tak, aby dávala zmysel. Záleží nám na tom, aby žiaci pochopili, prečo veci fungujú. Aby sme presne videli, kam sa posúvame, naši žiaci riešia priebežné testy a cvičné úlohy. Tie nám okamžite ukážu prípadné medzery, ktoré hneď spoločne odstránime.</p>
+            </div>
           </div>
         </div>
 
-        <ul className="site-shell relative z-10 mt-7 grid grid-cols-2 border-y border-[#d7e3f7] py-4 sm:grid-cols-4">
-          {promises.map(({ icon: Icon, title }, index) => (
-            <li key={title} className={`flex items-center gap-3 px-3 py-3 sm:justify-center sm:px-4 ${index % 2 === 1 ? 'border-l border-[#d7e3f7]' : ''} sm:border-l sm:first:border-l-0`}>
-              <Icon className="size-8 shrink-0 text-[#0b5cff]" strokeWidth={2.1} />
-              <h3 className="text-[17px] font-extrabold leading-tight text-[#09266f]">{title}</h3>
+        <div className="site-shell relative z-10 mt-7 grid gap-4 md:grid-cols-2">
+          <article className="rounded-2xl border border-[#d7e3f7] bg-white p-5 sm:p-6">
+            <h3 className="text-[20px] font-extrabold leading-tight text-[#09266f]">Pravidelná spätná väzba pre rodičov</h3>
+            <p className="mt-3 text-[17px] font-normal leading-[1.7] text-[#334d82]">Vieme, že ako rodič chcete mať istotu, že sa vaše dieťa naozaj posúva vpred. Preto vás nenecháme v neistote. O pokroku žiakov pravidelne informujeme – dozviete sa, ako sa im darí, a či sú na prijímačky a T9 skutočne pripravení.</p>
+          </article>
+          <article className="rounded-2xl border border-[#bfd4ff] bg-[#edf4ff] p-5 sm:p-6">
+            <h3 className="text-[20px] font-extrabold leading-tight text-[#075cff]">Garantujeme 100 % pripravenosť:</h3>
+            <p className="mt-3 text-[17px] font-normal leading-[1.7] text-[#334d82]">Garantujeme, že nielenže prejdeme a natrénujeme každý typ príkladu zo skúšok, ale hlavne im vysvetlíme logiku, ktorá sa za ním skrýva. Vaše dieťa tak pôjde na prijímačky s vedomím, že si s každým zadaním poradí a už ho nemá čo prekvapiť.</p>
+          </article>
+        </div>
+
+        <ul className="site-shell relative z-10 mt-7 grid grid-cols-2 gap-x-3 gap-y-2 border-y border-[#d7e3f7] py-4 sm:grid-cols-3">
+          {promises.map(({ icon: Icon, title }) => (
+            <li key={title} className="flex min-w-0 flex-col items-center gap-2 rounded-xl px-2 py-3 text-center sm:flex-row sm:gap-3 sm:px-3 sm:text-left">
+              <Icon aria-hidden="true" className="size-8 shrink-0 text-[#0b5cff]" strokeWidth={2.1} />
+              <h3 className="min-w-0 text-[14px] font-extrabold leading-[1.35] text-[#09266f] sm:text-[16px]">{title}</h3>
             </li>
           ))}
         </ul>
@@ -339,7 +345,6 @@ export default function Home() {
         <SchoolBackdrop />
         <div className="site-shell relative z-10"><SectionTitle>Cenník</SectionTitle><div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           <article className="price-card"><GraduationCap aria-hidden="true" className="price-card-symbol" /><h3 className="price-head">Kurzy</h3><div className="price-body"><p className="price-label">Skúšobná hodina</p><p className="price-main">14 €</p><div className="price-rule" /><p className="price-label">Balíčky</p><LessonPackageList /></div></article>
-          
           <article className="price-card"><UserRound aria-hidden="true" className="price-card-symbol" /><h3 className="price-head">Individuálne doučovanie<br /><small>(55 minút)</small></h3><div className="price-body"><p className="price-main !mt-0">24 €</p><div className="price-rule" /><p className="price-label">Zober aj parťáka a dostaneš</p><p className="text-[58.5px] font-extrabold leading-none text-[#09266f]">30 %</p><p className="mt-1 text-[20px] font-extrabold leading-[1.2] text-[#075cff]">zľavu</p><p className="mt-3 text-[16.5px] font-normal leading-[1.35]">Učenie bude zábavnejšie<br />a cena výhodnejšia!</p></div></article>
           <article className="price-card"><MonitorPlay aria-hidden="true" className="price-card-symbol" /><h3 className="price-head">Balík samouk</h3><div className="price-body"><p className="price-main !mt-0">20 €</p><div className="price-rule" /><div><div className="mb-3 flex items-center justify-center gap-4 text-[#075cff]"><MonitorPlay className="size-9" /><span className="text-[45px] leading-none">＋</span><UserRound className="size-9" /></div><p className="text-[18px] font-semibold leading-[1.35]">2× výučbové video<br />na konkrétnu tému<br /><span className="text-[36px] leading-none text-[#075cff]">＋</span><br />30-minútové doučovanie<br />na objasnenie nejasností<br />a upevnenie vedomostí</p></div></div></article>
         </div></div>
@@ -357,6 +362,14 @@ export default function Home() {
 
       <footer className="bg-[#061947] py-3 text-white">
         <div className="site-shell flex flex-col items-center justify-between gap-3 sm:flex-row"><a href="#uvod"><Brand footer /></a><p className="text-[12px] font-normal text-white/65">© 2026 Matikáreň – Všetky práva vyhradené.</p><div className="flex gap-4"><a href="https://www.instagram.com/matikaren.sk/" target="_blank" rel="noreferrer" aria-label="Instagram Matikáreň" className="grid size-7 place-items-center rounded-lg border border-white/80 transition hover:border-[#8db9ff] hover:text-[#8db9ff]"><svg viewBox="0 0 24 24" aria-hidden="true" className="size-4 fill-none stroke-current" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" className="fill-current stroke-none" /></svg></a><a href="https://www.tiktok.com/@matikaren.sk" target="_blank" rel="noreferrer" aria-label="TikTok Matikáreň" className="grid size-7 place-items-center rounded-lg border border-white/80 transition hover:border-[#8db9ff] hover:text-[#8db9ff]"><Music2 className="size-4" /></a><a href="mailto:matikaren.info@gmail.com" aria-label="Email Matikáreň" className="grid size-7 place-items-center rounded-lg border border-white/80 transition hover:border-[#8db9ff] hover:text-[#8db9ff]"><Mail className="size-4" /></a></div></div>
+        <div className="site-shell mt-4 border-t border-white/15 pt-4 text-center text-[12px] font-normal leading-relaxed text-white/70 sm:text-left">
+          <p className="font-semibold text-white/90">Juraj Marcinka - Doučovanie</p>
+          <div className="mt-1 flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:gap-x-6">
+            <p>Bzovícka 3175/20, 851 07 Bratislava, Slovensko</p>
+            <p>IČO: 57891435</p>
+          </div>
+          <p className="mt-2">Zapísaný v Živnostenskom registri Okresného úradu Bratislava, č. živnostenského registra: 110-371606.</p>
+        </div>
       </footer>
     </main>
   );

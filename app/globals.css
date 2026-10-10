@@ -123,13 +123,13 @@
   }
 
   html {
-    @apply scroll-smooth font-sans;
+    @apply scroll-smooth;
     min-height: 100%;
     background-color: #061947;
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-background text-foreground font-sans antialiased;
     min-width: 320px;
     min-height: 100%;
     background-color: #061947;
@@ -193,6 +193,15 @@
     max-width: none;
   }
 
+  .brand-logo-header-source {
+    position: absolute;
+    inset: 0;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    transform: scale(1.08);
+  }
+
   .hero-logo-watermark {
     -webkit-mask-image: radial-gradient(circle, #000 58%, transparent 76%);
     mask-image: radial-gradient(circle, #000 58%, transparent 76%);
@@ -218,6 +227,15 @@
   .math-float:nth-child(3n) {
     animation-delay: -3.4s;
     animation-duration: 6.4s;
+  }
+
+  .hero-word-pulse {
+    animation: hero-word-pulse 2.5s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  .hero-word-pulse-delay {
+    animation-delay: 0.35s;
   }
 
   .booking-pulse {
@@ -405,6 +423,14 @@
 }
 
 @media (max-width: 639px) {
+  .hero-word-pulse {
+    animation-name: hero-word-glow;
+    animation-fill-mode: both;
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+
   .site-shell {
     width: min(100% - 2rem, 930px);
   }
@@ -515,6 +541,32 @@
   }
   50% {
     box-shadow: 0 12px 28px rgba(0, 75, 255, 0.4), 0 0 0 7px rgba(72, 145, 255, 0);
+  }
+}
+
+@keyframes hero-word-pulse {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+    text-shadow: 0 2px 5px rgba(2, 14, 50, 0.65);
+  }
+  50% {
+    opacity: 0.82;
+    filter: brightness(1.22);
+    text-shadow: 0 0 20px rgba(101, 160, 255, 0.78), 0 2px 5px rgba(2, 14, 50, 0.65);
+  }
+}
+
+@keyframes hero-word-glow {
+  0%, 100% {
+    text-shadow:
+      0 2px 5px rgba(2, 14, 50, 0.65),
+      0 0 6px rgba(101, 160, 255, 0.2);
+  }
+  50% {
+    text-shadow:
+      0 2px 5px rgba(2, 14, 50, 0.65),
+      0 0 20px rgba(101, 160, 255, 0.78);
   }
 }
 
