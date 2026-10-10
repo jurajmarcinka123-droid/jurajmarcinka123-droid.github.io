@@ -28,7 +28,7 @@ export function VideoReview() {
             preload="none"
             aria-label="Video recenzia Matikárne"
             onError={() => setFailed(true)}
-            className="relative -top-[2px] block h-[calc(100%+2px)] w-full object-cover [&:fullscreen]:top-0 [&:fullscreen]:h-full [&:fullscreen]:object-contain"
+            className="block h-full w-full scale-[1.045] object-cover [&:fullscreen]:scale-100 [&:fullscreen]:object-contain"
           >
             Váš prehliadač nepodporuje prehrávanie videa.
           </video>
