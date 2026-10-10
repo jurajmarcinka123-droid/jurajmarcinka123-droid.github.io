@@ -234,10 +234,6 @@
     transform-origin: center;
   }
 
-  .hero-word-pulse-delay {
-    animation-delay: 0.35s;
-  }
-
   .booking-pulse {
     position: relative;
     isolation: isolate;

@@ -213,14 +213,14 @@ export default function Home() {
           <div className="hero-main-copy relative isolate w-full pt-1">
             <h1 className="relative z-10 max-w-[720px] text-[clamp(2rem,9.5vw,2.65rem)] font-extrabold leading-[1.1] tracking-[-.035em] sm:text-balance sm:text-[62px] sm:leading-[1.04]">
               <span className="block whitespace-nowrap sm:whitespace-normal"><span className="hero-word-pulse inline-block">Dostaneme</span> ťa na</span>
-              <span className="block text-white"><span className="whitespace-nowrap">tvoju <span className="hero-word-pulse hero-word-pulse-delay inline-block text-[#65a0ff]">vysnívanú</span></span>{' '}<span className="block whitespace-nowrap text-[#65a0ff] sm:inline sm:whitespace-normal">strednú školu</span></span>
+              <span className="block text-white"><span className="whitespace-nowrap">tvoju <span className="hero-word-pulse inline-block text-[#65a0ff]">vysnívanú</span></span>{' '}<span className="block whitespace-nowrap text-[#65a0ff] sm:inline sm:whitespace-normal">strednú školu</span></span>
             </h1>
             <p className="mt-5 max-w-[600px] text-[20px] font-semibold leading-[1.5] text-white">Špecializovaná príprava z matematiky na prijímačky na strednú školu a T9.</p>
             <div className="mt-4 flex max-w-[690px] items-start gap-3 rounded-xl border border-[#7eb0ff]/70 bg-[#061947]/55 px-4 py-3 text-[14px] font-bold leading-[1.45] text-white shadow-[0_10px_24px_rgba(0,15,58,.2)] backdrop-blur-sm sm:max-w-[460px]">
               <ShieldCheck className="mt-0.5 size-5 shrink-0 text-[#7eb0ff]" aria-hidden="true" />
               <p><strong className="font-extrabold">Prvá hodina úplne bez rizika.</strong> Ak nebudete spokojní, vrátime vám peniaze.</p>
             </div>
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-start">
               <ConsultationDialog />
               <CallLink className="button-font inline-flex items-center gap-2 rounded-xl border border-white bg-white/10 px-6 py-3 text-[15px] font-extrabold text-white transition hover:bg-white/20" aria-label="Zavolať na číslo +421 944 275 203"><Phone className="size-4" fill="currentColor" />+421 944 275 203</CallLink>
               <a href="#cennik" className="button-font rounded-xl border border-white bg-white/5 px-6 py-3 text-[15px] font-extrabold transition hover:bg-white/10">Pozrieť cenník</a>
