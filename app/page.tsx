@@ -220,10 +220,10 @@ export default function Home() {
               <ShieldCheck className="mt-0.5 size-5 shrink-0 text-[#7eb0ff]" aria-hidden="true" />
               <p><strong className="font-extrabold">Prvá hodina úplne bez rizika.</strong> Ak nebudete spokojní, vrátime vám peniaze.</p>
             </div>
-            <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-start">
-              <ConsultationDialog />
-              <CallLink className="button-font inline-flex items-center gap-2 rounded-xl border border-white bg-white/10 px-6 py-3 text-[15px] font-extrabold text-white transition hover:bg-white/20" aria-label="Zavolať na číslo +421 944 275 203"><Phone className="size-4" fill="currentColor" />+421 944 275 203</CallLink>
-              <a href="#cennik" className="button-font rounded-xl border border-white bg-white/5 px-6 py-3 text-[15px] font-extrabold transition hover:bg-white/10">Pozrieť cenník</a>
+            <div className="mt-6 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-start">
+              <a href="#cennik" className="button-font rounded-xl border border-white bg-white/5 px-6 py-3 text-[15px] font-extrabold transition hover:bg-white/10 sm:order-3">Pozrieť cenník</a>
+              <CallLink className="button-font inline-flex items-center gap-2 rounded-xl border border-white bg-white/10 px-6 py-3 text-[15px] font-extrabold text-white transition hover:bg-white/20 sm:order-2" aria-label="Zavolať na číslo +421 944 275 203"><Phone className="size-4" fill="currentColor" />+421 944 275 203</CallLink>
+              <div className="sm:order-1"><ConsultationDialog /></div>
             </div>
             <div className="mt-7 grid max-w-[1080px] grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-3 lg:grid-cols-6 lg:gap-x-5">
               {advantages.map(({ icon: Icon, title }) => (
