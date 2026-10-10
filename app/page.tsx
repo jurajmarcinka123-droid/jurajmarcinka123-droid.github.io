@@ -211,9 +211,9 @@ export default function Home() {
 
         <div className="site-shell relative z-10 flex min-h-[430px] items-center pb-8 pt-6">
           <div className="hero-main-copy relative isolate w-full pt-1">
-            <h1 className="relative z-10 max-w-[720px] text-[clamp(2.65rem,11vw,3.5rem)] font-extrabold leading-[1.04] tracking-[-.035em] text-balance sm:text-[62px]">
-              <span className="hero-word-pulse inline-block">Dostaneme</span> ťa na
-              <span className="block text-white">tvoju <span className="hero-word-pulse hero-word-pulse-delay inline-block text-[#65a0ff]">vysnívanú</span> <span className="text-[#65a0ff]">strednú školu</span></span>
+            <h1 className="relative z-10 max-w-[720px] text-[clamp(2rem,9.5vw,2.65rem)] font-extrabold leading-[1.1] tracking-[-.035em] sm:text-balance sm:text-[62px] sm:leading-[1.04]">
+              <span className="block whitespace-nowrap sm:whitespace-normal"><span className="hero-word-pulse inline-block">Dostaneme</span> ťa na</span>
+              <span className="block text-white"><span className="whitespace-nowrap">tvoju <span className="hero-word-pulse hero-word-pulse-delay inline-block text-[#65a0ff]">vysnívanú</span></span>{' '}<span className="block whitespace-nowrap text-[#65a0ff] sm:inline sm:whitespace-normal">strednú školu</span></span>
             </h1>
             <p className="mt-5 max-w-[600px] text-[20px] font-semibold leading-[1.5] text-white">Špecializovaná príprava z matematiky na prijímačky na strednú školu a T9.</p>
             <div className="mt-4 flex max-w-[690px] items-start gap-3 rounded-xl border border-[#7eb0ff]/70 bg-[#061947]/55 px-4 py-3 text-[14px] font-bold leading-[1.45] text-white shadow-[0_10px_24px_rgba(0,15,58,.2)] backdrop-blur-sm sm:max-w-[460px]">
@@ -360,15 +360,19 @@ export default function Home() {
         <div className="button-font site-shell relative z-10 flex flex-col items-center justify-between gap-4 rounded-xl bg-[linear-gradient(110deg,#071a4c,#083a91)] px-7 py-4 text-white shadow-[0_12px_30px_rgba(8,38,105,.16)] md:flex-row"><div><h2 className="text-[20px] font-extrabold uppercase">Kontaktuj nás</h2><div className="mt-2 flex flex-wrap gap-x-8 gap-y-2.5 text-[16px] font-bold"><CallLink className="flex items-center gap-2 transition hover:text-[#8db9ff]" aria-label="Zavolať na číslo +421 944 275 203"><Phone className="size-5" fill="currentColor" />+421 944 275 203</CallLink><a href="mailto:matikaren.info@gmail.com" className="flex items-center gap-2 transition hover:text-[#8db9ff]"><Mail className="size-5" />matikaren.info@gmail.com</a><span className="flex items-center gap-2"><BookOpenCheck className="size-5" />Online aj osobne</span></div></div><a href="mailto:matikaren.info@gmail.com?subject=Z%C3%A1ujem%20o%20dou%C4%8Dovanie%20matematiky" className="button-font flex shrink-0 items-center gap-2 rounded-xl bg-[#0b5cff] px-6 py-3 text-[15px] font-extrabold transition hover:bg-[#2470ff]"><MessageCircle className="size-4" fill="currentColor" />Napísať správu</a></div>
       </section>
 
-      <footer className="bg-[#061947] py-3 text-white">
-        <div className="site-shell flex flex-col items-center justify-between gap-3 sm:flex-row"><a href="#uvod"><Brand footer /></a><p className="text-[12px] font-normal text-white/65">© 2026 Matikáreň – Všetky práva vyhradené.</p><div className="flex gap-4"><a href="https://www.instagram.com/matikaren.sk/" target="_blank" rel="noreferrer" aria-label="Instagram Matikáreň" className="grid size-7 place-items-center rounded-lg border border-white/80 transition hover:border-[#8db9ff] hover:text-[#8db9ff]"><svg viewBox="0 0 24 24" aria-hidden="true" className="size-4 fill-none stroke-current" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" className="fill-current stroke-none" /></svg></a><a href="https://www.tiktok.com/@matikaren.sk" target="_blank" rel="noreferrer" aria-label="TikTok Matikáreň" className="grid size-7 place-items-center rounded-lg border border-white/80 transition hover:border-[#8db9ff] hover:text-[#8db9ff]"><Music2 className="size-4" /></a><a href="mailto:matikaren.info@gmail.com" aria-label="Email Matikáreň" className="grid size-7 place-items-center rounded-lg border border-white/80 transition hover:border-[#8db9ff] hover:text-[#8db9ff]"><Mail className="size-4" /></a></div></div>
-        <div className="site-shell mt-4 border-t border-white/15 pt-4 text-center text-[12px] font-normal leading-relaxed text-white/70 sm:text-left">
-          <p className="font-semibold text-white/90">Juraj Marcinka - Doučovanie</p>
-          <div className="mt-1 flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:gap-x-6">
-            <p>Bzovícka 3175/20, 851 07 Bratislava, Slovensko</p>
-            <p>IČO: 57891435</p>
+      <footer className="bg-[#061947] py-6 text-white">
+        <div className="site-shell grid items-start gap-5 text-center md:grid-cols-[1fr_2fr_auto] md:gap-7 md:text-left">
+          <div className="flex flex-col items-center md:items-start">
+            <a href="#uvod"><Brand footer /></a>
+            <p className="mt-3 text-[11px] font-normal leading-relaxed text-white/55">© 2026 Matikáreň<br />Všetky práva vyhradené.</p>
           </div>
-          <p className="mt-2">Zapísaný v Živnostenskom registri Okresného úradu Bratislava, č. živnostenského registra: 110-371606.</p>
+          <div className="text-[12px] font-normal leading-relaxed text-white/70">
+            <p className="text-[13px] font-semibold text-white/95">Juraj Marcinka - Doučovanie</p>
+            <p className="mt-1">Bzovícka 3175/20, 851 07 Bratislava, Slovensko</p>
+            <p className="mt-1">IČO: 57891435</p>
+            <p className="mt-2 max-w-[540px]">Zapísaný v Živnostenskom registri Okresného úradu Bratislava, č. živnostenského registra: 110-371606.</p>
+          </div>
+          <div className="flex justify-center gap-3"><a href="https://www.instagram.com/matikaren.sk/" target="_blank" rel="noreferrer" aria-label="Instagram Matikáreň" className="grid size-8 place-items-center rounded-lg border border-white/40 transition hover:border-[#8db9ff] hover:text-[#8db9ff]"><svg viewBox="0 0 24 24" aria-hidden="true" className="size-4 fill-none stroke-current" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" className="fill-current stroke-none" /></svg></a><a href="https://www.tiktok.com/@matikaren.sk" target="_blank" rel="noreferrer" aria-label="TikTok Matikáreň" className="grid size-8 place-items-center rounded-lg border border-white/40 transition hover:border-[#8db9ff] hover:text-[#8db9ff]"><Music2 className="size-4" /></a><a href="mailto:matikaren.info@gmail.com" aria-label="Email Matikáreň" className="grid size-8 place-items-center rounded-lg border border-white/40 transition hover:border-[#8db9ff] hover:text-[#8db9ff]"><Mail className="size-4" /></a></div>
         </div>
       </footer>
     </main>

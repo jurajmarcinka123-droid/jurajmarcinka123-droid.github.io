@@ -425,6 +425,7 @@
 @media (max-width: 639px) {
   .hero-word-pulse {
     animation-name: hero-word-glow;
+    animation-duration: 2s;
     animation-fill-mode: both;
     opacity: 1;
     filter: none;
@@ -561,12 +562,14 @@
   0%, 100% {
     text-shadow:
       0 2px 5px rgba(2, 14, 50, 0.65),
-      0 0 6px rgba(101, 160, 255, 0.2);
+      0 0 4px rgba(101, 160, 255, 0.15);
   }
   50% {
     text-shadow:
       0 2px 5px rgba(2, 14, 50, 0.65),
-      0 0 20px rgba(101, 160, 255, 0.78);
+      0 0 8px rgba(164, 203, 255, 0.95),
+      0 0 22px rgba(101, 160, 255, 0.95),
+      0 0 38px rgba(101, 160, 255, 0.65);
   }
 }
 
