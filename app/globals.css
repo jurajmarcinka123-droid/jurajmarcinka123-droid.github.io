@@ -230,8 +230,7 @@
   }
 
   .hero-word-pulse {
-    animation: hero-word-pulse 2.5s ease-in-out infinite;
-    transform-origin: center;
+    animation: hero-word-glow 2s ease-in-out infinite;
   }
 
   .booking-pulse {
@@ -419,15 +418,6 @@
 }
 
 @media (max-width: 639px) {
-  .hero-word-pulse {
-    animation-name: hero-word-glow;
-    animation-duration: 2s;
-    animation-fill-mode: both;
-    opacity: 1;
-    filter: none;
-    transform: none;
-  }
-
   .site-shell {
     width: min(100% - 2rem, 930px);
   }
@@ -538,19 +528,6 @@
   }
   50% {
     box-shadow: 0 12px 28px rgba(0, 75, 255, 0.4), 0 0 0 7px rgba(72, 145, 255, 0);
-  }
-}
-
-@keyframes hero-word-pulse {
-  0%, 100% {
-    opacity: 1;
-    filter: brightness(1);
-    text-shadow: 0 2px 5px rgba(2, 14, 50, 0.65);
-  }
-  50% {
-    opacity: 0.82;
-    filter: brightness(1.22);
-    text-shadow: 0 0 20px rgba(101, 160, 255, 0.78), 0 2px 5px rgba(2, 14, 50, 0.65);
   }
 }
 
