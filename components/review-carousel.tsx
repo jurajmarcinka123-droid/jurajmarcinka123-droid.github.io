@@ -29,6 +29,34 @@ import { cn } from '@/lib/utils';
 
 const reviews = [
   {
+    author: 'Olívia',
+    text: 'Trpezlivý prístup a skvelé vysvetľovanie učiva mi pomohli bez problémov zvládnuť prijímačky na gymnázium a T9. Na skúšky som bola výborne pripravená, preto toto doučovanie určite odporúčam.',
+  },
+  {
+    author: 'Juliana',
+    text: 'Kurz bol veľmi dobrý, bola som s ním velmi spokojná. Bol si trpezlivý, ochotný a všetko si vedel zrozumitelne vysvetliť. Vďaka tvojej pomoci som sa dostala na školu, za čo som velmi vďačná. Určite odporúčam.',
+  },
+  {
+    author: 'Jakub',
+    text: 'Doučovanie mi veľmi pomohlo a pripravilo ma na všetko, čo som potreboval. Veci ktorým som predtým nerozumel teraz konečne chápem a vďaka pravidelnému vysvetľovaniu som získal oveľa väčšiu istotu. Najviac oceňujem vynikajúci a kamarátsky prístup kvoli ktorému boli hodiny príjemné a nikdy som sa nebál opýtať keď som niečomu nerozumel.\nDoucovanie urcite odporucam',
+  },
+  {
+    author: 'Alex',
+    text: 'Skvelý doučovaťeľ, vysvetlil rýchlo, zrozumiteľne, lekcie vynikajúce, nič by som nemenil! Môžem len a len odporučiť!!',
+  },
+  {
+    author: 'Jakub',
+    text: 'Kurz bol perfektný, všetko som si zopakoval a na Grösslingovú ma prijali. Ak budem na strednej potrebovať doučko, tak sa určite ozvem.',
+  },
+  {
+    author: 'Max',
+    text: 'Čauko, urobil som prijímačky na školu, ktorú som chcel. Díky za tvoj čas a prípravu, veľmi si ťa vážim. Všetko dobré do života.',
+  },
+  {
+    author: 'Alexandra',
+    text: 'Juraj je veľmi milý, spoľahlivý a hlavne trpezlivý doučovateľ. Mojej dcére veľmi pomohol. Vychádzala jej 4 z matematiky, ale po pravidelnej práci s Jurajom jej teraz vychádza dvojka a do konca roka máme ešte veľa času, takže verím, že ľahko zvládneme aj 1. Ďakujeme, Jurko. :)',
+  },
+  {
     author: 'Lenka',
     text: 'P. Marcinka už na prvej hodine dokázal nášho pubertiaka povzbudiť a usmerniť v matematike. Náš 11-ročný syn sa teší na každé doučovanie s ním a berie to ako príjemné stretnutie s mladým chalanom, ktorý ho vedie k lepšej známke a k porozumeniu matematiky.\n\nVýber mladého doučovateľa p. Marcinka bola skvelá voľba. Ďakujeme.',
   },
@@ -37,28 +65,12 @@ const reviews = [
     text: 'Som veľmi spokojná. Mali sme síce ešte len prvé doučovanie, ale hneď ako skončilo, mi syn volal do práce celý natešený, že mu Juraj za jednu hodinu vysvetlil to, čo učiteľka nedokázala za 2 týždne, odkedy to berú. Určite budeme pokračovať, ďakujeme.',
   },
   {
-    author: 'Alexandra',
-    text: 'Juraj je veľmi milý, spoľahlivý a hlavne trpezlivý doučovateľ. Mojej dcére veľmi pomohol. Vychádzala jej 4 z matematiky, ale po pravidelnej práci s Jurajom jej teraz vychádza dvojka a do konca roka máme ešte veľa času, takže verím, že ľahko zvládneme aj 1. Ďakujeme, Jurko. :)',
-  },
-  {
-    author: 'Kristína',
-    text: 'Veľmi spoľahlivý, zodpovedný, vysvetľuje zrozumiteľne, odporúčam. Nám veľmi pomohol.',
-  },
-  {
     author: 'Andrea',
     text: 'Pán Marcinka, máte neskutočne dobrý vplyv na nášho Jakuba. Normálne si píše poznámky z matematiky kvôli vám :) a po prvom doučku vypočítal všetky príklady bez chyby – sám sa pochválil. On maká na sebe, lebo ste mu pomohli svojím prístupom pochopiť, že sa to dá :) Tešíme sa na nedeľné stretnutie a prajem pekný víkend.',
   },
   {
-    author: 'Max',
-    text: 'Čauko, urobil som prijímačky na školu, ktorú som chcel. Díky za tvoj čas a prípravu, veľmi si ťa vážim. Všetko dobré do života.',
-  },
-  {
-    author: 'Jakub',
-    text: 'Kurz bol perfektny, vsetko som si zopakoval a na Groslingovu ma prijali ak budem na strednej potrebovat doucko tak sa urcite ozvem.',
-  },
-  {
-    author: 'Martina',
-    text: 'Adam sa dosť zlepšil v matike, už nenosí domov trojky ale samé jednotky, ďakujeme',
+    author: 'Kristína',
+    text: 'Veľmi spoľahlivý, zodpovedný, vysvetľuje zrozumiteľne, odporúčam. Nám veľmi pomohol.',
   },
 ];
 
