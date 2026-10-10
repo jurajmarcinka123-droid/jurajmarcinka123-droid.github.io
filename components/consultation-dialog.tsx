@@ -19,7 +19,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
 
-export function ConsultationDialog({ compact = false }: { compact?: boolean }) {
+export function ConsultationDialog({ compact = false, triggerClassName }: { compact?: boolean; triggerClassName?: string }) {
   const [open, setOpen] = React.useState(false);
   const [status, setStatus] = React.useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [message, setMessage] = React.useState('');
@@ -91,6 +91,7 @@ export function ConsultationDialog({ compact = false }: { compact?: boolean }) {
         className={cn(
           'booking-pulse button-font inline-flex items-center justify-center rounded-xl bg-[#0b5cff] font-extrabold text-white shadow-[0_12px_28px_rgba(0,75,255,.35)] transition hover:bg-[#2470ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8cb7ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#071c50]',
           compact ? 'hidden px-5 py-3 text-[14px] sm:inline-flex' : 'px-6 py-3 text-[15px]',
+          triggerClassName,
         )}
       >
         {compact ? 'Bezplatná konzultácia' : 'Objednať bezplatnú konzultáciu'}

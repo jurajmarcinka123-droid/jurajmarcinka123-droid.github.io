@@ -4,11 +4,50 @@ import * as React from 'react';
 import { CirclePlay } from 'lucide-react';
 
 const videoSrc = '/videos/matikaren-video-recenzia.mp4';
-const posterSrc = '/videos/matikaren-video-recenzia-poster-otvorene-oci.jpg';
+const posterSrc = '/videos/matikaren-video-recenzia-poster-sedi.jpg';
 
 export function VideoReview() {
   const [started, setStarted] = React.useState(false);
   const [failed, setFailed] = React.useState(false);
+  const [controlsVisible, setControlsVisible] = React.useState(true);
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+  const controlsTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const cancelControlsHide = React.useCallback(() => {
+    if (controlsTimer.current !== null) {
+      clearTimeout(controlsTimer.current);
+      controlsTimer.current = null;
+    }
+  }, []);
+
+  const revealControls = React.useCallback(() => {
+    cancelControlsHide();
+    setControlsVisible(true);
+  }, [cancelControlsHide]);
+
+  const hideControlsSoon = React.useCallback((delay = 1800) => {
+    cancelControlsHide();
+    const video = videoRef.current;
+    if (!video || video.paused || !window.matchMedia('(max-width: 639px)').matches) return;
+
+    controlsTimer.current = setTimeout(() => {
+      controlsTimer.current = null;
+      const fullscreenVideo = video as HTMLVideoElement & { webkitDisplayingFullscreen?: boolean };
+      if (!video.paused && !video.ended && !document.fullscreenElement && !fullscreenVideo.webkitDisplayingFullscreen) {
+        setControlsVisible(false);
+      }
+    }, delay);
+  }, [cancelControlsHide]);
+
+  React.useEffect(() => {
+    const mobile = window.matchMedia('(max-width: 639px)');
+    const handleResize = () => revealControls();
+    mobile.addEventListener('change', handleResize);
+    return () => {
+      mobile.removeEventListener('change', handleResize);
+      cancelControlsHide();
+    };
+  }, [cancelControlsHide, revealControls]);
 
   return (
     <figure className="mx-auto w-full max-w-[280px]">
@@ -18,15 +57,35 @@ export function VideoReview() {
       <div className="relative aspect-[9/16] overflow-hidden rounded-[24px] border border-[#cad9f4] bg-[#071a45] shadow-[0_16px_40px_rgba(24,72,158,.18)]">
         {started ? (
           <video
+            ref={videoRef}
             src={videoSrc}
             poster={posterSrc}
             width={720}
             height={1280}
-            controls
+            controls={controlsVisible}
             playsInline
             autoPlay
-            preload="none"
+            preload="auto"
+            tabIndex={0}
             aria-label="Video recenzia Matikárne"
+            onPlaying={() => hideControlsSoon(800)}
+            onPointerDown={revealControls}
+            onPointerUp={() => hideControlsSoon()}
+            onPointerCancel={() => hideControlsSoon()}
+            onKeyDown={(event) => {
+              revealControls();
+              if (event.key === ' ' && !event.currentTarget.controls) {
+                event.preventDefault();
+                if (event.currentTarget.paused) {
+                  void event.currentTarget.play().catch(() => setFailed(true));
+                } else {
+                  event.currentTarget.pause();
+                }
+              }
+            }}
+            onPause={revealControls}
+            onEnded={revealControls}
+            onWaiting={revealControls}
             onError={() => setFailed(true)}
             className="block h-full w-full scale-[1.045] object-cover [&:fullscreen]:scale-100 [&:fullscreen]:object-contain"
           >
@@ -48,7 +107,7 @@ export function VideoReview() {
               className="h-full w-full object-cover"
             />
             <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-[#071a45]/85 via-transparent to-transparent" />
-            <span aria-hidden="true" className="absolute inset-0 grid place-items-center">
+            <span aria-hidden="true" className="absolute inset-x-0 top-[66%] flex -translate-y-1/2 justify-center">
               <span className="grid size-[72px] place-items-center rounded-full bg-[#075cff]/95 text-white shadow-[0_8px_30px_rgba(0,0,0,.3)] transition group-hover:scale-105 group-hover:bg-[#064dcc]">
                 <CirclePlay className="size-12" strokeWidth={1.8} />
               </span>
