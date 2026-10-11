@@ -19,25 +19,29 @@ const nunito = Nunito({
   weight: ['700', '800', '900'],
 });
 
+const siteTitle = 'Matikáreň – Doučovanie matematiky, T9 a prijímačky';
+const siteDescription = 'Doučovanie matematiky a príprava na Testovanie 9 a prijímačky na strednú školu. Skúsení lektori, malé skupiny aj individuálne hodiny online a osobne.';
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://matikaren.jurajmarcinka123.chatgpt.site'),
-  title: 'Matikáreň | Matematika, ktorej rozumieš',
-  description:
-    'Doučovanie matematiky pre ZŠ, SŠ a VŠ. Príprava na T9, prijímačky a maturitu.',
+  metadataBase: new URL('https://matikaren.sk'),
+  title: siteTitle,
+  description: siteDescription,
+  alternates: {
+    canonical: '/',
+  },
   icons: {
     icon: '/matikaren-logo.png',
   },
   openGraph: {
-    title: 'Matikáreň | Matematika, ktorej rozumieš',
-    description:
-      'Doučovanie matematiky pre ZŠ, SŠ a VŠ. Príprava na T9, prijímačky a maturitu.',
-    url: 'https://matikaren.jurajmarcinka123.chatgpt.site',
+    title: siteTitle,
+    description: siteDescription,
+    url: 'https://matikaren.sk/',
     siteName: 'Matikáreň',
     locale: 'sk_SK',
     type: 'website',
     images: [
       {
-        url: 'https://matikaren.jurajmarcinka123.chatgpt.site/og.png',
+        url: 'https://matikaren.sk/og.png',
         width: 1734,
         height: 909,
         alt: 'Matikáreň – Matematika, ktorej rozumieš.',
@@ -46,10 +50,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Matikáreň | Matematika, ktorej rozumieš',
-    description:
-      'Doučovanie matematiky pre ZŠ, SŠ a VŠ. Príprava na T9, prijímačky a maturitu.',
-    images: ['https://matikaren.jurajmarcinka123.chatgpt.site/og.png'],
+    title: siteTitle,
+    description: siteDescription,
+    images: ['https://matikaren.sk/og.png'],
   },
 };
 
@@ -68,6 +71,16 @@ export default function RootLayout({
         className={`${poppins.variable} ${geistMono.variable} ${nunito.variable} antialiased`}
         style={{ backgroundColor: '#061947' }}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: 'Matikáreň',
+            alternateName: ['Matikaren', 'matikaren.sk'],
+            url: 'https://matikaren.sk/',
+          }) }}
+        />
         {children}
       </body>
     </html>

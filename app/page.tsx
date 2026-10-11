@@ -215,7 +215,7 @@ export default function Home() {
               <span className="block whitespace-nowrap sm:whitespace-normal">Dostaneme ťa na</span>
               <span className="block text-white"><span className="whitespace-nowrap">tvoju <span className="hero-word-pulse inline-block text-[#65a0ff]">vysnívanú</span></span>{' '}<span className="hero-word-pulse block whitespace-nowrap text-[#65a0ff] sm:inline sm:whitespace-normal">strednú školu</span></span>
             </h1>
-            <p className="mt-5 max-w-[600px] text-[20px] font-semibold leading-[1.5] text-white">Špecializovaná príprava z matematiky na prijímačky<br /><span className="whitespace-nowrap">na strednú školu a T9.</span></p>
+            <p className="mt-5 max-w-[600px] whitespace-nowrap text-[clamp(14px,4.8vw,18px)] font-semibold leading-[1.5] text-white sm:whitespace-normal sm:text-[20px]">Špecializovaná príprava z matematiky<br className="sm:hidden" />{' '}na prijímačky<br className="hidden sm:block" />{' '}<span className="whitespace-nowrap">na strednú školu a T9.</span></p>
             <div className="mt-4 flex max-w-[690px] items-start gap-3 rounded-xl border border-[#7eb0ff]/70 bg-[#061947]/55 px-4 py-3 text-[14px] font-bold leading-[1.45] text-white shadow-[0_10px_24px_rgba(0,15,58,.2)] backdrop-blur-sm sm:max-w-[460px]">
               <ShieldCheck className="mt-0.5 size-5 shrink-0 text-[#7eb0ff]" aria-hidden="true" />
               <p><strong className="font-extrabold">Prvá hodina úplne bez rizika.</strong> Ak nebudete spokojní, vrátime vám peniaze.</p>
