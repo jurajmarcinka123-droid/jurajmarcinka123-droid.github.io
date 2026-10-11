@@ -30,7 +30,9 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   icons: {
-    icon: '/matikaren-logo.png',
+    icon: { url: '/favicon.png', type: 'image/png', sizes: '96x96' },
+    shortcut: '/favicon.ico',
+    apple: { url: '/apple-touch-icon.png', type: 'image/png', sizes: '180x180' },
   },
   openGraph: {
     title: siteTitle,
