@@ -230,7 +230,7 @@
   }
 
   .hero-word-pulse {
-    animation: hero-word-glow 2s ease-in-out infinite;
+    animation: hero-word-glow 4.2s ease-in-out infinite;
   }
 
   .booking-pulse {
@@ -418,6 +418,12 @@
 }
 
 @media (max-width: 639px) {
+  .hero-word-pulse {
+    animation: hero-word-scale 3.6s ease-in-out infinite;
+    transform-origin: left center;
+    text-shadow: 0 2px 5px rgba(2, 14, 50, 0.65);
+  }
+
   .site-shell {
     width: min(100% - 2rem, 930px);
   }
@@ -535,14 +541,23 @@
   0%, 100% {
     text-shadow:
       0 2px 5px rgba(2, 14, 50, 0.65),
-      0 0 4px rgba(101, 160, 255, 0.15);
+      0 0 4px rgba(101, 160, 255, 0.12);
   }
   50% {
     text-shadow:
       0 2px 5px rgba(2, 14, 50, 0.65),
-      0 0 8px rgba(164, 203, 255, 0.95),
-      0 0 22px rgba(101, 160, 255, 0.95),
-      0 0 38px rgba(101, 160, 255, 0.65);
+      0 0 5px rgba(164, 203, 255, 0.5),
+      0 0 12px rgba(101, 160, 255, 0.5),
+      0 0 20px rgba(101, 160, 255, 0.25);
+  }
+}
+
+@keyframes hero-word-scale {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.035);
   }
 }
 
