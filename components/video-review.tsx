@@ -13,6 +13,7 @@ export function VideoReview() {
   const [controlsVisible, setControlsVisible] = React.useState(true);
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const controlsTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastTap = React.useRef<{ time: number; x: number; y: number } | null>(null);
 
   const cancelControlsHide = React.useCallback(() => {
     if (controlsTimer.current !== null) {
@@ -25,6 +26,29 @@ export function VideoReview() {
     cancelControlsHide();
     setControlsVisible(true);
   }, [cancelControlsHide]);
+
+  const pausePlayback = React.useCallback(() => {
+    lastTap.current = null;
+    videoRef.current?.pause();
+    revealControls();
+  }, [revealControls]);
+
+  const handlePlaybackClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const previousTap = lastTap.current;
+    const isDoubleTap = previousTap !== null
+      && event.timeStamp - previousTap.time <= 400
+      && Math.abs(event.clientX - previousTap.x) <= 24
+      && Math.abs(event.clientY - previousTap.y) <= 24;
+
+    if (event.detail === 0 || isDoubleTap) {
+      pausePlayback();
+      return;
+    }
+
+    lastTap.current = { time: event.timeStamp, x: event.clientX, y: event.clientY };
+    revealControls();
+    hideControlsSoon();
+  };
 
   const hideControlsSoon = React.useCallback((delay = 1800) => {
     cancelControlsHide();
@@ -71,6 +95,7 @@ export function VideoReview() {
               tabIndex={0}
               aria-label="Video recenzia Matikárne"
               onPlaying={() => {
+                lastTap.current = null;
                 setPlaying(true);
                 hideControlsSoon(800);
               }}
@@ -89,6 +114,7 @@ export function VideoReview() {
                 }
               }}
               onPause={() => {
+                lastTap.current = null;
                 setPlaying(false);
                 revealControls();
               }}
@@ -102,15 +128,17 @@ export function VideoReview() {
             >
               Váš prehliadač nepodporuje prehrávanie videa.
             </video>
-            {playing && !controlsVisible && (
+            {playing && (
               <button
                 type="button"
-                aria-label="Pozastaviť video recenziu"
-                onClick={() => {
-                  videoRef.current?.pause();
-                  revealControls();
+                aria-label="Pozastaviť video recenziu dvojklikom"
+                onClick={handlePlaybackClick}
+                onDoubleClick={(event) => {
+                  event.preventDefault();
+                  pausePlayback();
                 }}
-                className="absolute inset-0 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-[#75acff]"
+                style={{ bottom: controlsVisible ? 64 : 0 }}
+                className="absolute inset-x-0 top-0 touch-manipulation focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-[#75acff]"
               />
             )}
           </>
