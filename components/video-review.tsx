@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { CirclePlay } from 'lucide-react';
+import { CirclePlay, Pause, Play } from 'lucide-react';
 
 const videoSrc = '/videos/matikaren-video-recenzia.mp4';
 const posterSrc = '/videos/matikaren-video-recenzia-poster-sedi.jpg';
@@ -11,9 +11,9 @@ export function VideoReview() {
   const [failed, setFailed] = React.useState(false);
   const [playing, setPlaying] = React.useState(false);
   const [controlsVisible, setControlsVisible] = React.useState(true);
+  const [overlayVisible, setOverlayVisible] = React.useState(false);
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const controlsTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null);
-  const lastTap = React.useRef<{ time: number; x: number; y: number } | null>(null);
 
   const cancelControlsHide = React.useCallback(() => {
     if (controlsTimer.current !== null) {
@@ -27,42 +27,48 @@ export function VideoReview() {
     setControlsVisible(true);
   }, [cancelControlsHide]);
 
-  const pausePlayback = React.useCallback(() => {
-    lastTap.current = null;
-    videoRef.current?.pause();
-    revealControls();
-  }, [revealControls]);
+  const hideOverlay = React.useCallback(() => {
+    cancelControlsHide();
+    setOverlayVisible(false);
+    const video = videoRef.current;
+    setControlsVisible(!video || video.paused || !window.matchMedia('(max-width: 639px)').matches);
+  }, [cancelControlsHide]);
 
-  const handlePlaybackClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const previousTap = lastTap.current;
-    const isDoubleTap = previousTap !== null
-      && event.timeStamp - previousTap.time <= 400
-      && Math.abs(event.clientX - previousTap.x) <= 24
-      && Math.abs(event.clientY - previousTap.y) <= 24;
-
-    if (event.detail === 0 || isDoubleTap) {
-      pausePlayback();
-      return;
-    }
-
-    lastTap.current = { time: event.timeStamp, x: event.clientX, y: event.clientY };
-    revealControls();
-    hideControlsSoon();
-  };
-
-  const hideControlsSoon = React.useCallback((delay = 1800) => {
+  const hideControlsSoon = React.useCallback((delay = 2500) => {
     cancelControlsHide();
     const video = videoRef.current;
-    if (!video || video.paused || !window.matchMedia('(max-width: 639px)').matches) return;
+    if (!video || video.paused) return;
 
     controlsTimer.current = setTimeout(() => {
       controlsTimer.current = null;
       const fullscreenVideo = video as HTMLVideoElement & { webkitDisplayingFullscreen?: boolean };
       if (!video.paused && !video.ended && !document.fullscreenElement && !fullscreenVideo.webkitDisplayingFullscreen) {
-        setControlsVisible(false);
+        setOverlayVisible(false);
+        if (window.matchMedia('(max-width: 639px)').matches) setControlsVisible(false);
       }
     }, delay);
   }, [cancelControlsHide]);
+
+  const toggleOverlay = () => {
+    if (overlayVisible) {
+      hideOverlay();
+      return;
+    }
+    setOverlayVisible(true);
+    revealControls();
+    hideControlsSoon();
+  };
+
+  const togglePlayback = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.paused) {
+      setOverlayVisible(false);
+      void video.play().catch(() => setFailed(true));
+    } else {
+      video.pause();
+    }
+  };
 
   React.useEffect(() => {
     const mobile = window.matchMedia('(max-width: 639px)');
@@ -95,9 +101,8 @@ export function VideoReview() {
               tabIndex={0}
               aria-label="Video recenzia Matikárne"
               onPlaying={() => {
-                lastTap.current = null;
                 setPlaying(true);
-                hideControlsSoon(800);
+                hideControlsSoon(overlayVisible ? 2500 : 800);
               }}
               onPointerDown={revealControls}
               onPointerUp={() => hideControlsSoon()}
@@ -114,11 +119,12 @@ export function VideoReview() {
                 }
               }}
               onPause={() => {
-                lastTap.current = null;
+                setOverlayVisible(true);
                 setPlaying(false);
                 revealControls();
               }}
               onEnded={() => {
+                setOverlayVisible(true);
                 setPlaying(false);
                 revealControls();
               }}
@@ -128,18 +134,25 @@ export function VideoReview() {
             >
               Váš prehliadač nepodporuje prehrávanie videa.
             </video>
-            {playing && (
+            {overlayVisible && (
+              <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-black/40" />
+            )}
+            <button
+              type="button"
+              aria-label={overlayVisible ? 'Skryť ovládanie videa' : 'Zobraziť ovládanie videa'}
+              onClick={toggleOverlay}
+              style={{ bottom: controlsVisible ? 64 : 0 }}
+              className="absolute inset-x-0 top-0 touch-manipulation focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-[#75acff]"
+            />
+            {overlayVisible && (
               <button
                 type="button"
-                aria-label="Pozastaviť video recenziu dvojklikom"
-                onClick={handlePlaybackClick}
-                onDoubleClick={(event) => {
-                  event.preventDefault();
-                  pausePlayback();
-                }}
-                style={{ bottom: controlsVisible ? 64 : 0 }}
-                className="absolute inset-x-0 top-0 touch-manipulation focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-[#75acff]"
-              />
+                aria-label={playing ? 'Pozastaviť video recenziu' : 'Pokračovať vo videu'}
+                onClick={togglePlayback}
+                className="absolute left-1/2 top-1/2 grid size-[72px] -translate-x-1/2 -translate-y-1/2 touch-manipulation place-items-center rounded-full bg-black/35 text-white transition-colors hover:bg-black/50 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#75acff]"
+              >
+                {playing ? <Pause aria-hidden="true" className="size-9 fill-current" strokeWidth={1.6} /> : <Play aria-hidden="true" className="ml-1 size-9 fill-current" strokeWidth={1.6} />}
+              </button>
             )}
           </>
         ) : (
