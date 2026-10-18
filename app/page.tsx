@@ -285,12 +285,12 @@ export default function Home() {
             <div className="grid md:grid-cols-[minmax(260px,.78fr)_1.45fr]">
               <div className="relative min-h-[390px] overflow-hidden bg-[#dce9ff] md:min-h-[440px]">
                 <Image
-                  src="/juraj-marcinka-alternativny-nahlad-2026.png"
+                  src="/juraj-marcinka-zakladatel-2026.png"
                   alt="Juraj Marcinka, zakladateľ a lektor Matikárne"
                   width={1152}
                   height={1536}
                   sizes="(max-width: 767px) 100vw, 38vw"
-                  className="absolute inset-0 h-full w-full object-cover object-[70%_40%]"
+                  className="absolute inset-0 h-full w-full object-cover object-[center_40%]"
                 />
                 <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#061947]/55 to-transparent" />
               </div>
